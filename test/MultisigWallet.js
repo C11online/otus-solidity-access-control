@@ -19,7 +19,7 @@ describe("MultiSigWallet", function () {
     await multiSigWallet.waitForDeployment();
 
     const TestContract = await ethers.getContractFactory("TestContract");
-    testContract = await TestContract.deploy();
+    testContract = await TestContract.deploy(await multiSigWallet.getAddress());
     await testContract.waitForDeployment();
     testContractAddr = await testContract.getAddress();
 

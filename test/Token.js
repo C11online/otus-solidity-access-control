@@ -33,6 +33,6 @@ describe("Token", function () {
     const recipient = ethers.Wallet.createRandom().address;
     const amount = ethers.parseEther("3000");
 
-    await expect(token.transfer(recipient, amount)).to.be.revertedWith("ERC20: transfer amount exceeds balance");
+    await expect(token.transfer(recipient, amount)).to.be.revertedWithCustomError(token, "ERC20InsufficientBalance");
   });
 });

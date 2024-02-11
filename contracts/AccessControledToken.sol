@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -9,8 +9,8 @@ contract AccessControledToken is ERC20, AccessControl {
     bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
 
     constructor(address minter, address burner) ERC20("AccessControledToken", "ACT") {
-        _setupRole(MINTER_ROLE, minter);
-        _setupRole(BURNER_ROLE, burner);
+        _grantRole(MINTER_ROLE, minter);
+        _grantRole(BURNER_ROLE, burner);
     }
 
     function mint(address to, uint256 amount) public {
